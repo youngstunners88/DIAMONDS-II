@@ -1,462 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>$DIAMONDS Protocol - Watch Now</title>
-<meta name="description" content="$DIAMONDS Protocol - Mine the future of ETH rewards">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rye&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$DIAMONDS - Watch Now</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rye&family=Cinzel:wght@400;700;900&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-    font-family: 'Cinzel', serif;
-    color: #FFD700;
-    overflow: hidden;
-    background-image: url('https://i.imgur.com/OmeVrjo.png');
-    background-size: cover;
-    background-position: center center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    position: relative;
-    height: 100vh;
-}
+        body {
+            font-family: 'Cinzel', serif;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background: url('https://i.imgur.com/OmeVrjo.png') center center / cover no-repeat fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
 
-/* Dark overlay for readability */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(10, 15, 46, 0.6);
-    z-index: -1;
-}
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 15, 30, 0.4);
+            z-index: 0;
+        }
 
-/* Glowing particles floating */
-.particles {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    z-index: 1;
-}
+        .container {
+            position: relative;
+            z-index: 1;
+            width: 90%;
+            max-width: 1200px;
+            text-align: center;
+        }
 
-.particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: #00BFFF;
-    border-radius: 50%;
-    animation: float 15s infinite linear;
-    box-shadow: 0 0 15px #00BFFF;
-}
+        .headline {
+            font-family: 'Rye', serif;
+            font-size: clamp(1.8rem, 5vw, 3.5rem);
+            color: #FFD700;
+            text-shadow: 
+                3px 3px 0 rgba(0, 0, 0, 0.8),
+                0 0 30px rgba(0, 191, 255, 0.8),
+                0 0 60px rgba(255, 215, 0, 0.5);
+            margin-bottom: 0.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: pulse 3s infinite;
+        }
 
-@keyframes float {
-    0% {
-        transform: translateY(100vh) translateX(0);
-        opacity: 0;
-    }
-    10% {
-        opacity: 1;
-    }
-    90% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-100vh) translateX(50px);
-        opacity: 0;
-    }
-}
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); text-shadow: 3px 3px 0 rgba(0,0,0,0.8), 0 0 30px rgba(0,191,255,0.8), 0 0 60px rgba(255,215,0,0.5); }
+            50% { transform: scale(1.02); text-shadow: 3px 3px 0 rgba(0,0,0,0.8), 0 0 50px rgba(0,191,255,1), 0 0 80px rgba(255,215,0,0.8); }
+        }
 
-/* Main container - centered */
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 2rem;
-    position: relative;
-    z-index: 10;
-}
+        .subheadline {
+            font-family: 'IM Fell English', serif;
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            color: #F5DEB3;
+            font-style: italic;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
+            letter-spacing: 1px;
+        }
 
-/* Title - eye-catching and minimal */
-.title {
-    font-family: 'Rye', serif;
-    font-size: 2.8rem;
-    margin-bottom: 2rem;
-    color: #FFD700;
-    text-align: center;
-    text-shadow: 
-        3px 3px 0 rgba(0, 0, 0, 0.7),
-        0 0 30px rgba(0, 191, 255, 0.9),
-        0 0 60px rgba(255, 215, 0, 0.7);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    position: relative;
-    animation: titleGlow 3s infinite alternate;
-    max-width: 800px;
-    line-height: 1.3;
-}
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            border: 4px solid #8B6914;
+            border-radius: 12px;
+            box-shadow: 
+                0 0 60px rgba(0, 191, 255, 0.6),
+                0 0 100px rgba(255, 215, 0, 0.3),
+                inset 0 0 40px rgba(0,0,0,0.5);
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
 
-@keyframes titleGlow {
-    from {
-        text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 191, 255, 0.6), 0 0 40px rgba(255, 215, 0, 0.3);
-    }
-    to {
-        text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.7), 0 0 40px rgba(0, 191, 255, 1), 0 0 80px rgba(255, 215, 0, 0.9);
-    }
-}
+        .video-wrapper:hover {
+            transform: scale(1.02);
+            box-shadow: 
+                0 0 80px rgba(0, 191, 255, 0.9),
+                0 0 120px rgba(255, 215, 0, 0.5),
+                inset 0 0 40px rgba(0,0,0,0.5);
+            border-color: #00BFFF;
+        }
 
-.title:before {
-    content: '💎';
-    position: absolute;
-    left: -60px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 3rem;
-    color: #00BFFF;
-    animation: diamondFloat 3s infinite ease-in-out;
-}
+        .video-wrapper::before {
+            content: '▶';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 5rem;
+            color: rgba(255, 215, 0, 0.9);
+            text-shadow: 0 0 40px rgba(0, 191, 255, 1);
+            z-index: 10;
+            pointer-events: none;
+            animation: playPulse 2s infinite;
+            transition: all 0.3s;
+        }
 
-.title:after {
-    content: '💎';
-    position: absolute;
-    right: -60px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 3rem;
-    color: #00BFFF;
-    animation: diamondFloat 3s infinite ease-in-out reverse;
-}
+        .video-wrapper:hover::before {
+            color: #00BFFF;
+            transform: translate(-50%, -50%) scale(1.2);
+            text-shadow: 0 0 60px rgba(0, 191, 255, 1);
+        }
 
-@keyframes diamondFloat {
-    0%, 100% {
-        transform: translateY(-50%) rotate(0deg) scale(1);
-    }
-    50% {
-        transform: translateY(-60%) rotate(15deg) scale(1.2);
-    }
-}
+        @keyframes playPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+        }
 
-/* Video container - large and centered */
-.video-container {
-    position: relative;
-    width: 100%;
-    max-width: 1200px;
-    aspect-ratio: 16/9;
-    border: 6px solid #8B6914;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 
-        0 0 50px rgba(0, 191, 255, 0.8),
-        inset 0 0 60px rgba(0, 0, 0, 0.6),
-        0 15px 40px rgba(0, 0, 0, 0.8);
-    background: rgba(0, 0, 0, 0.7);
-    cursor: pointer;
-    transition: all 0.4s ease;
-    animation: pulseBorder 4s infinite;
-}
+        .video-wrapper iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            display: block;
+        }
 
-@keyframes pulseBorder {
-    0%, 100% {
-        box-shadow: 0 0 50px rgba(0, 191, 255, 0.8), inset 0 0 60px rgba(0, 0, 0, 0.6);
-    }
-    50% {
-        box-shadow: 0 0 80px rgba(0, 191, 255, 1), inset 0 0 80px rgba(0, 0, 0, 0.7);
-    }
-}
+        .cta-text {
+            margin-top: 1.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            color: #CD853F;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
+            animation: flicker 4s infinite;
+        }
 
-.video-container:hover {
-    transform: scale(1.02);
-    box-shadow: 
-        0 0 80px rgba(0, 191, 255, 1),
-        inset 0 0 80px rgba(0, 0, 0, 0.7),
-        0 20px 50px rgba(0, 0, 0, 0.9);
-}
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+            52% { opacity: 0.3; }
+            54% { opacity: 1; }
+        }
 
-/* Play button overlay - to lure clicks */
-.play-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
-    z-index: 20;
-    transition: all 0.3s ease;
-    opacity: 1;
-}
+        .diamond-icon {
+            position: absolute;
+            font-size: 2rem;
+            color: #00BFFF;
+            text-shadow: 0 0 20px rgba(0, 191, 255, 0.8);
+            animation: float 6s infinite ease-in-out;
+            opacity: 0.6;
+        }
 
-.video-container:hover .play-overlay {
-    opacity: 0.8;
-    background: rgba(0, 0, 0, 0.2);
-}
+        .diamond-1 { top: 10%; left: 5%; animation-delay: 0s; }
+        .diamond-2 { top: 20%; right: 8%; animation-delay: 2s; }
+        .diamond-3 { bottom: 15%; left: 8%; animation-delay: 4s; }
+        .diamond-4 { bottom: 20%; right: 5%; animation-delay: 1s; }
 
-.play-button {
-    width: 120px;
-    height: 120px;
-    background: linear-gradient(135deg, #FFD700 0%, #CD853F 100%);
-    border: 6px solid #8B6914;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    box-shadow: 
-        0 0 40px rgba(255, 215, 0, 0.8),
-        inset 0 0 20px rgba(139, 105, 20, 0.5);
-    animation: playButtonPulse 2s infinite;
-    transition: all 0.3s ease;
-}
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
 
-@keyframes playButtonPulse {
-    0%, 100% {
-        transform: scale(1);
-        box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
-    }
-    50% {
-        transform: scale(1.05);
-        box-shadow: 0 0 60px rgba(255, 215, 0, 1);
-    }
-}
-
-.play-button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 80px rgba(255, 215, 0, 1);
-}
-
-.play-icon {
-    font-size: 5rem;
-    color: #3d2b1f;
-    position: relative;
-    left: 8px;
-    animation: playIconGlow 2s infinite;
-}
-
-@keyframes playIconGlow {
-    0%, 100% {
-        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    }
-    50% {
-        text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
-    }
-}
-
-.watch-text {
-    font-size: 1.8rem;
-    color: #FFD700;
-    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 191, 255, 0.6);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 900;
-    animation: watchTextFloat 3s infinite;
-}
-
-@keyframes watchTextFloat {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-.watch-text:before,
-.watch-text:after {
-    content: '▶';
-    margin: 0 10px;
-    color: #00BFFF;
-    animation: playIconBlink 1.5s infinite;
-}
-
-.watch-text:after {
-    animation-delay: 0.75s;
-}
-
-@keyframes playIconBlink {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.4;
-    }
-}
-
-/* YouTube iframe */
-.video-embed {
-    width: 100%;
-    height: 100%;
-    border: none;
-    position: relative;
-    z-index: 10;
-}
-
-/* Subtitle - minimal call to action */
-.subtitle {
-    font-size: 1.2rem;
-    color: #F5DEB3;
-    text-align: center;
-    margin-top: 2rem;
-    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 191, 255, 0.4);
-    font-style: italic;
-    max-width: 600px;
-    line-height: 1.6;
-}
-
-/* Footer minimal CTA */
-.cta-link {
-    margin-top: 3rem;
-    background: linear-gradient(180deg, #8B6914 0%, #654321 50%, #3d2b1f 100%);
-    color: #FFD700;
-    padding: 1rem 3rem;
-    border: 3px solid #CD853F;
-    border-radius: 8px;
-    text-decoration: none;
-    font-family: 'Cinzel', serif;
-    font-size: 1.3rem;
-    font-weight: 900;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    transition: all 0.3s;
-    box-shadow: 0 0 30px rgba(0, 191, 255, 0.6);
-    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 215, 0, 0.6);
-    display: inline-block;
-    position: relative;
-}
-
-.cta-link:before {
-    content: '★';
-    position: absolute;
-    left: -25px;
-    color: #00BFFF;
-    font-size: 1.5rem;
-    animation: twinkle 2s infinite;
-}
-
-.cta-link:after {
-    content: '★';
-    position: absolute;
-    right: -25px;
-    color: #00BFFF;
-    font-size: 1.5rem;
-    animation: twinkle 2s infinite 1s;
-}
-
-@keyframes twinkle {
-    0%, 100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 0.6;
-        transform: scale(0.9);
-    }
-}
-
-.cta-link:hover {
-    background: linear-gradient(180deg, #9B7714 0%, #754321 50%, #4d3b2f 100%);
-    box-shadow: 0 0 60px rgba(0, 191, 255, 1);
-    transform: translateY(-5px);
-}
-
-/* Mobile responsive */
-@media (max-width: 768px) {
-    .title {
-        font-size: 1.8rem;
-        letter-spacing: 2px;
-    }
-    
-    .title:before,
-    .title:after {
-        font-size: 2rem;
-        left: -40px;
-        right: -40px;
-    }
-    
-    .play-button {
-        width: 80px;
-        height: 80px;
-    }
-    
-    .play-icon {
-        font-size: 3rem;
-    }
-    
-    .watch-text {
-        font-size: 1.2rem;
-    }
-    
-    .subtitle {
-        font-size: 1rem;
-        margin-top: 1.5rem;
-    }
-    
-    .cta-link {
-        padding: 0.8rem 2rem;
-        font-size: 1rem;
-    }
-}
-</style>
+        @media (max-width: 768px) {
+            .video-wrapper iframe {
+                height: 250px;
+            }
+            .diamond-icon {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="particles" id="particles"></div>
-    
+    <div class="diamond-icon diamond-1">◆</div>
+    <div class="diamond-icon diamond-2">◆</div>
+    <div class="diamond-icon diamond-3">◆</div>
+    <div class="diamond-icon diamond-4">◆</div>
+
     <div class="container">
-        <h1 class="title">MINE THE FUTURE OF ETH REWARDS</h1>
+        <h1 class="headline">The Future of ETH Rewards</h1>
+        <p class="subheadline">Discover what awaits in the mine...</p>
         
-        <div class="video-container">
-            <div class="play-overlay">
-                <div class="play-button">
-                    <span class="play-icon">▶</span>
-                </div>
-                <div class="watch-text">WATCH NOW</div>
-            </div>
+        <div class="video-wrapper" onclick="window.open('https://youtu.be/ynw0w_As6yA', '_blank')">
             <iframe 
-                class="video-embed" 
-                src="https://www.youtube.com/embed/ynw0w_As6yA?autoplay=1&mute=1" 
-                allow="autoplay; encrypted-media" 
+                src="https://www.youtube.com/embed/ynw0w_As6yA?autoplay=0&rel=0&modestbranding=1" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowfullscreen>
             </iframe>
         </div>
         
-        <p class="subtitle">Discover blockchain-powered staking, mining, and diamond rewards on Ethereum</p>
-        
-        <a href="http://diamonds1111.win" class="cta-link" target="_blank">Explore Protocol</a>
+        <p class="cta-text">◆ Click to Uncover the Protocol ◆</p>
     </div>
-
-    <script>
-        // Create floating particles
-        const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 40; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 15 + 's';
-            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-            particlesContainer.appendChild(particle);
-        }
-        
-        // Make video container clickable to focus/play
-        document.querySelector('.video-container').addEventListener('click', function() {
-            // The iframe will handle the play action
-            // This ensures mobile users can tap to play
-        });
-    </script>
 </body>
 </html>

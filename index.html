@@ -383,6 +383,43 @@
             }
         }
     </style>
+    <style id="facelift">
+        /* ---- Facelift: additive layer. Nothing above is removed or renamed. ---- */
+        html { scroll-behavior: smooth; }
+        body { line-height: 1.65; -webkit-font-smoothing: antialiased; }
+        a:focus-visible, button:focus-visible, .play-overlay:focus-visible {
+            outline: 3px solid #00BFFF; outline-offset: 4px; border-radius: 6px;
+        }
+        .headline { font-size: clamp(1.9rem, 6vw, 3.6rem); line-height: 1.15; }
+        .subheadline { font-size: clamp(1.05rem, 2.8vw, 1.4rem); }
+        @media (max-width: 768px) { header { position: relative; } }
+
+        /* position + z-index: the page has a fixed dark overlay (body::before) that
+           dims anything not layered above it, as .main-content is. */
+        .smoke-game-section { position: relative; z-index: 2; padding: clamp(2rem, 5vw, 4rem) 5%; }
+        .smoke-game-card { max-width: 820px; margin: 0 auto; padding: clamp(1.4rem, 4vw, 2.6rem);
+            background: linear-gradient(180deg, #f5f5dc 0%, #e8dcc0 100%);
+            border: 5px solid #8B6914; border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.55); color: #2b1d12; }
+        .smoke-game-card h2 { font-family: 'Rye', serif; color: #3d2b1f; text-align: center;
+            font-size: clamp(1.4rem, 3.8vw, 2.1rem); margin-bottom: 1rem; }
+        .smoke-game-card p { font-family: 'Crimson Text', serif; color: #2b1d12;
+            font-size: clamp(1.05rem, 2.2vw, 1.2rem); margin-bottom: 0.9rem; }
+        .smoke-game-card .fine { font-size: 1rem; color: #4a3826; font-style: italic; }
+        .smoke-game-actions { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 1.5rem; }
+        .smoke-game-actions a { font-family: 'Cinzel', serif; font-weight: 700; text-decoration: none;
+            padding: 0.9rem 1.7rem; border-radius: 6px; border: 3px solid #8B6914;
+            transition: transform 0.15s ease, box-shadow 0.15s ease; }
+        .smoke-game-actions .primary { background: linear-gradient(180deg, #8B6914 0%, #654321 50%, #3d2b1f 100%); color: #FFD700; }
+        .smoke-game-actions .secondary { background: transparent; color: #3d2b1f; }
+        .smoke-game-actions a:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(0, 191, 255, 0.45); }
+        footer a { color: #FFD700; margin: 0 1rem; text-decoration: none; font-family: 'Cinzel', serif; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *:before, *:after { animation: none !important; }
+            html { scroll-behavior: auto; }
+        }
+    </style>
 </head>
 <body>
     <!-- Floating Diamonds -->
@@ -426,8 +463,25 @@
         </div>
     </main>
 
+    <section class="smoke-game-section" id="smoke-game" aria-labelledby="smoke-game-heading">
+        <div class="smoke-game-card">
+            <h2 id="smoke-game-heading">🎮 Play Lil Blunt: The Smoke Realm</h2>
+            <p><strong>Lil Blunt: The Smoke Realm</strong> is a free 2D side-scrolling
+            platformer you play in your web browser on desktop or mobile, with no download,
+            no account and no wallet needed. It is set around the SMOKE, $DIAMONDS and GOLD
+            protocols, and Stage 2 has a learning room about $DIAMONDS.</p>
+            <p class="fine">Playing the game is free and does not pay out tokens, NFTs or ETH
+            rewards. Scores on the game site are demonstration data, not recorded on a blockchain.</p>
+            <div class="smoke-game-actions">
+                <a class="primary" href="https://www.smokegame.win/" target="_blank" rel="noopener">Play at smokegame.win</a>
+                <a class="secondary" href="https://youngstunners88.itch.io/lil-blunt-adventure" target="_blank" rel="noopener">Also on itch.io</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
+        <p><a href="https://www.smokegame.win/" target="_blank" rel="noopener">Play Lil Blunt: The Smoke Realm</a></p>
         <p>© 2026 $DIAMONDS Protocol. Built on Ethereum.</p>
     </footer>
 
@@ -437,6 +491,14 @@
         const videoWrapper = document.getElementById('videoWrapper');
         const iframe = document.getElementById('youtubePlayer');
         
+        // Keyboard access: the overlay was a bare <div>, unreachable without a mouse.
+        playOverlay.setAttribute('role', 'button');
+        playOverlay.setAttribute('tabindex', '0');
+        playOverlay.setAttribute('aria-label', 'Play video');
+        playOverlay.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); playOverlay.click(); }
+        });
+
         playOverlay.addEventListener('click', function() {
             // Hide the play overlay
             playOverlay.classList.add('hidden');
